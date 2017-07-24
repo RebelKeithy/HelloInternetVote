@@ -1,21 +1,17 @@
 <body>
+<h1><p class="countdown">Voting</p></h1>
 <div class="inner-content">
 <script charset="utf-8" type="text/javascript" src="https://static.polldaddy.com/p/9794855.js"></script>
 </div>
 </body>
 
 <script>
-window.alert = function(msg) {
-     console.log(msg);
-}
-try { var radio } catch (err) {}
-try { var vote_btn } catch (err) {}
-try { var back_btn } catch (err) {}
-
+alert = function () { };
 function select() {
-    radio = document.getElementById('PDI_answer44811670')
-    vote_btn = document.getElementById('pd-vote-button9794855')
-    back_btn = document.querySelector('a.pds-return-poll')
+    radio = document.getElementById('PDI_answer44811670');
+    vote_btn = document.getElementById('pd-vote-button9794855');
+    back_btn = document.querySelector('a.pds-return-poll');
+	res_text = document.querySelector('div.pds-question-top');
 }
 
 function eventFire(el, etype){
@@ -29,17 +25,45 @@ function eventFire(el, etype){
   }
 }
 
-setInterval(function() { 
-    select()
-    try { 
-        radio.click()
-        eventFire(vote_btn, 'click')
-    } catch (e) {  }
-}, 3000)
-setInterval(function() {
-    select()
-    try { back_btn.click() } catch (e) {  }
-}, 10000, 500)
+function sleep( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+}
 
-setInterval(function () {window.location.reload()}, 5*60000);
+var time = -1;
+
+setInterval(function () {
+    select();
+    try {
+        radio.click();
+        eventFire(vote_btn, 'click');
+    } catch (e) { }
+}, 3000);
+setInterval(function () {
+    select();
+	
+	if(time > 0)
+		return;
+	
+	if(time == -1 && res_text.textContent.indexOf("we have already counted your vote") != -1) {
+		time = 120;
+		return;
+	}
+	
+	time = -1;
+	try { back_btn.click(); } catch (e) { }
+		
+}, 10000, 500);
+
+setInterval(function() {
+
+  
+    document.querySelector("p.countdown").innerHTML = "Voting";
+	if (time > 0) {
+		time--;
+		document.querySelector("p.countdown").innerHTML = "Waiting: " + time;
+	}
+}, 1000);
+
+setInterval(function () {window.location.reload()}, 10*60000);
 </script>
