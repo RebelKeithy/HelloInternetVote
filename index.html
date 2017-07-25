@@ -30,6 +30,7 @@ function sleep( sleepDuration ){
     while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
 }
 
+var votes = 24;
 var time = -1;
 
 setInterval(function () {
@@ -37,10 +38,18 @@ setInterval(function () {
     try {
         radio.click();
         eventFire(vote_btn, 'click');
+		votes++;
     } catch (e) { }
 }, 3000);
+
 setInterval(function () {
     select();
+	
+	if(time == -1 && votes >= 24)
+	{
+		time = 120;
+		return;
+	}
 	
 	if(time > 0)
 		return;
@@ -61,7 +70,7 @@ setInterval(function() {
     document.querySelector("p.countdown").innerHTML = "Voting";
 	if (time > 0) {
 		time--;
-		document.querySelector("p.countdown").innerHTML = "Waiting: " + time;
+		document.querySelector("p.countdown").innerHTML = "Prepairing to Vote: " + time;
 	}
 }, 1000);
 
