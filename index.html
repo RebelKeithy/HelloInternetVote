@@ -38,6 +38,7 @@ setInterval(function () {
     try {
         radio.click();
         eventFire(vote_btn, 'click');
+		votes++;
     } catch (e) { }
 }, 1000);
 
@@ -60,7 +61,6 @@ setInterval(function () {
 	}
 	
 	time = -1;
-	votes++;
 	try { back_btn.click(); } catch (e) { }
 		
 }, 1000, 500);
