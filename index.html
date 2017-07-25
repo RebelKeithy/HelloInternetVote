@@ -40,14 +40,14 @@ setInterval(function () {
         eventFire(vote_btn, 'click');
 		votes++;
     } catch (e) { }
-}, 3000);
+}, 1000);
 
 setInterval(function () {
     select();
 	
 	if(time == -1 && votes >= 24)
 	{
-		time = 120;
+		time = 60;
 		return;
 	}
 	
@@ -60,9 +60,10 @@ setInterval(function () {
 	}
 	
 	time = -1;
+	votes = 0;
 	try { back_btn.click(); } catch (e) { }
 		
-}, 10000, 500);
+}, 1000, 500);
 
 setInterval(function() {
 
