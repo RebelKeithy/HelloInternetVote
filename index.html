@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1><p class="countdown">Voting</p></h1>
-<div class="inner-content">
+<div id="testA"></div>
 
 <script>
 
@@ -23,16 +23,25 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+
 var pollNum = getUrlParameter('poll');
 var pollAns = getUrlParameter('ans');
 
-$.getScript('https://static.polldaddy.com/p/' + pollNum + '.js');
+$("#testA").append('pollNum :' + pollNum + '  -  ' + 'pollAns : ' + pollAns);
+
+var ScriptURL = 'https://static.polldaddy.com/p/' + pollNum + '.js';
 
 </script>
-<!--
-<script charset="utf-8" type="text/javascript" src="https://static.polldaddy.com/p/9794855.js"></script>
--->
+
+<div id="pollContainer" class="inner-content">
+    <script type="text/javascript">
+        document.write("<script src='" + ScriptURL + "'></scr" + + "ipt>");
+    </script>
 </div>
+
+
+
+
 </body>
 
 <script>
