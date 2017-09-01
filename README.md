@@ -14,4 +14,5 @@ example : https://damnalex.github.io/PollDaddyBallotStuffing/index.html?poll=979
 
 What needs to be done:
  - make the interface easy to use
+ - make a link generator
  - fix this page
