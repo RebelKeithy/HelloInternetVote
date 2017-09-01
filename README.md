@@ -7,7 +7,7 @@ Provide an easy to use tool to automagically vote in a polldaddy vote, to people
 Just Share a link and the voting starts
 
 What's availlable now:
-a configurable autovoting bot. configured through the link, as to be made by had, sharable.
+a configurable autovoting bot. configured through the link, as to be made by hand, sharable.
 
 example : https://damnalex.github.io/PollDaddyBallotStuffing/index.html?poll=9794855&ans=44811670
 
