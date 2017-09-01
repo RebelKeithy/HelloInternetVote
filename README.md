@@ -7,9 +7,11 @@ Provide an easy to use tool to automagically vote in a polldaddy vote, to people
 Just Share a link and the voting starts
 
 What's availlable now:
-a static web page for the final of the radiotime podcast and radio championship, this is juste the base made by RebelKeithy.
+a configurable autovoting bot. configured through the link, as to be made by had, sharable.
+
+example : https://damnalex.github.io/PollDaddyBallotStuffing/index.html?poll=9794855&ans=44811670
+
 
 What needs to be done:
- - make the bot configurable and sharable
  - make the interface easy to use
  - fix this page
