@@ -11,12 +11,10 @@
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
+        sParameterName;
 
-    for (i = 0; i < sURLVariables.length; i++) {
+    for (var i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
-
         if (sParameterName[0] === sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
@@ -102,8 +100,6 @@ setInterval(function () {
 }, 1000, 500);
 
 setInterval(function() {
-
-  
     document.querySelector("p.countdown").innerHTML = "Voting";
 	if (time > 0) {
 		time--;
