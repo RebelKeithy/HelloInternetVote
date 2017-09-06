@@ -1,86 +1,85 @@
+
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <h1><p class="countdown">Voting</p></h1>
-<div id="testA"></div>
+<div id="PollInfoArea"></div>
 
 <script>
 
 var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName;
+	var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName;
 
-    for (var i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
+	for (var i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
 };
 
 
 var pollNum = getUrlParameter('poll');
 var pollAns = getUrlParameter('ans');
 
-$("#testA").append('pollNum :' + pollNum + '  -  ' + 'pollAns : ' + pollAns);
+$("#PollInfoArea").append('pollNum :' + pollNum + '  -  ' + 'pollAns : ' + pollAns);
 
 var ScriptURL = 'https://static.polldaddy.com/p/' + pollNum + '.js';
 
 </script>
 
 <div id="pollContainer" class="inner-content">
-    <!-- This adds the poll integration from poll daddy -->
-    <script type="text/javascript">
-        document.write("<script src='" + ScriptURL + "'></scr" + + "ipt>");
-    </script>
+	<!-- This adds the poll integration from poll daddy -->
+	<script type="text/javascript">
+		document.write("<script src='" + ScriptURL + "'></scr" + + "ipt>");
+	</script>
 </div>
 </body>
 
 <script>
 alert = function () { };
 function select() {
-    radio = document.getElementById('PDI_answer' + pollAns);
-    vote_btn = document.getElementById('pd-vote-button' + pollNum);
-    back_btn = document.querySelector('a.pds-return-poll');
+	radio = document.getElementById('PDI_answer' + pollAns);
+	vote_btn = document.getElementById('pd-vote-button' + pollNum);
+	back_btn = document.querySelector('a.pds-return-poll');
 	res_text = document.querySelector('div.pds-question-top');
 }
 
 function eventFire(el, etype){
-  if (el.fireEvent) {
-    el.fireEvent('on' + etype);
-  } else {
-    var evObj = document.createEvent('Events');
-    evObj.initEvent(etype, true, false);
-    evObj.which = el
-    el.dispatchEvent(evObj);
-  }
+	if (el.fireEvent) {
+		el.fireEvent('on' + etype);
+	} else {
+		var evObj = document.createEvent('Events');
+		evObj.initEvent(etype, true, false);
+		evObj.which = el
+		el.dispatchEvent(evObj);
+	}
 }
 
 function sleep( sleepDuration ){
-    var now = new Date().getTime();
-    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+	var now = new Date().getTime();
+	while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
 }
 
 var votes = 24;
 var time = -1;
 
 setInterval(function () {
-    select();
-    try {
-        radio.click();
-        eventFire(vote_btn, 'click');
+	select();
+	try {
+		radio.click();
+		eventFire(vote_btn, 'click');
 		votes++;
-    } catch (e) { }
+	} catch (e) { }
 }, 1000);
 
 setInterval(function () {
-    select();
-	
-	if(time == -1 && votes >= 24)
-	{
+	select();
+	if(time == -1 && votes >= 24){
 		votes = 1;
 		time = 60;
 		return;
@@ -93,14 +92,14 @@ setInterval(function () {
 		time = 120;
 		return;
 	}
-	
+
 	time = -1;
 	try { back_btn.click(); } catch (e) { }
 		
 }, 1000, 500);
 
 setInterval(function() {
-    document.querySelector("p.countdown").innerHTML = "Voting";
+	document.querySelector("p.countdown").innerHTML = "Voting";
 	if (time > 0) {
 		time--;
 		document.querySelector("p.countdown").innerHTML = "Prepairing to Vote: " + time;
